@@ -74,8 +74,6 @@ public final class Fight {
 
                     } while (islemZorluk < 0 || islemZorluk > 4);
 
-                    System.out.println("\nOyun Basliyor...\n");
-
                 }
 
                 case 2 -> {
@@ -241,37 +239,125 @@ public final class Fight {
 
                     int islemInventory;
 
-                     do {
+                    do {
 
-                         islemInventory = inventoryMenu();
+                        islemInventory = inventoryMenu();
 
-                         switch (islemInventory){
+                        switch (islemInventory){
 
-                             case 1 -> {
+                            case 1 -> {
 
-                                 for (int i = 0; i < player.weapons.size(); i++) {
-                                         System.out.println(i + 1 + ". " + player.weapons.get(i) + "   " + player.weapons.get(i).equals(player.weapon));
-                                 }
+                                System.out.println("Silahlar" +
+                                        "\n Senin Paran = " + player.cash +
+                                        "\n1 - Normal Kilic (50)    " + Fighter.Weapons.NORMAL_SWORD.getOwned() + "     " + Fighter.Weapons.isInUse(Fighter.Weapons.NORMAL_SWORD) +
+                                        "\n2 - Agir Kilic (200) " + Fighter.Weapons.HEAVY_SWORD.getOwned() + "      " + Fighter.Weapons.isInUse(Fighter.Weapons.HEAVY_SWORD) +
+                                        "\n3 - Karanligin Bicaklari (500)   " + Fighter.Weapons.DARK_OF_BLADES.getOwned() + "      " + Fighter.Weapons.isInUse(Fighter.Weapons.DARK_OF_BLADES) +
+                                        "\n0 - Geri");
 
+                                int indexWeapon = scInt.nextInt();
+                                if (indexWeapon < Fighter.Weapons.values().length - 1 && indexWeapon > 0){
+                                    Fighter.Weapons weapon = Fighter.Weapons.values()[indexWeapon];
+                                    if (player.weapons.contains(weapon) || player.weapon != weapon) {
+                                        player.weapon = weapon;
+                                    } else {
+                                        System.out.println("Gecersiz Islem !");
+                                    }
+                                } else {
+                                    System.out.println("Secilen Islem listede yok !");
+                                }
 
+                                /*
+                                switch (islemMarket_Silahlar){
 
-                             }
+                                    case 1 -> {
 
-                             case 2 -> {
+                                        if (player.cash >= Fighter.Weapons.NORMAL_SWORD.getCost() && !player.weapons.equals(Fighter.Weapons.NORMAL_SWORD)){
+                                            System.out.println("Satin Alma Islemi Tamamlandi");
+                                            player.cash -= Fighter.Weapons.NORMAL_SWORD.getCost();
+                                        }
+                                        else {
+                                            System.out.println("Yetersiz Para");
+                                        }
 
-                             }
+                                    }
 
-                             case 3 -> {
+                                    case 2 -> {
 
-                             }
+                                        if (player.cash >= Fighter.Weapons.HEAVY_SWORD.getCost() && !player.weapons.equals(Fighter.Weapons.HEAVY_SWORD)){
+                                            System.out.println("Satin Alma Islemi Tamamlandi");
+                                            player.cash -= Fighter.Weapons.HEAVY_SWORD.getCost();
+                                        }
+                                        else {
+                                            System.out.println("Yetersiz Para");
+                                        }
 
-                             case 0 -> {
+                                    }
 
-                             }
+                                    case 3 -> {
+                                        if (player.cash >= Fighter.Weapons.DARK_OF_BLADES.ordinal() && !player.weapons.equals(Fighter.Weapons.HEAVY_SWORD)){
+                                            System.out.println("Satin Alma Islemi Tamamlandi");
+                                            player.cash -= Fighter.Weapons.HEAVY_SWORD.getCost();
+                                        }
+                                        else {
+                                            System.out.println("Yetersiz Para");
+                                        }
 
-                             default -> {
+                                    }
 
-                             }
+                                    case 0 -> {
+
+                                    }
+
+                                }
+                                */
+
+                            }
+
+                            case 2 -> {
+
+                                System.out.println("Zirhlar" +
+                                        "\n Senin Paran = " + player.cash +
+                                        "\n1 - Normal Zirh (150)    " + Fighter.Armors.NORMAL_ARMOR.getOwned() +  "   " + Fighter.Armors.isInUse(Fighter.Armors.NORMAL_ARMOR) +
+                                        "\n2 - Agir Zirh (300)  " + Fighter.Armors.HEAVY_ARMOR.getOwned() +  "   " + Fighter.Armors.isInUse(Fighter.Armors.HEAVY_ARMOR) +
+                                        "\n3 - Karanligin Zirhi (500)   " + Fighter.Armors.DARK_OF_ARMOR.getOwned() +  "   " + Fighter.Armors.isInUse(Fighter.Armors.DARK_OF_ARMOR) +
+                                        "\n0 - Geri");
+
+                                int indexArmor = scInt.nextInt();
+                                if (indexArmor < Fighter.Armors.values().length - 1 && indexArmor > 0){
+                                    Fighter.Armors armor = Fighter.Armors.values()[indexArmor];
+                                    if (player.armors.contains(armor) || player.armor != armor) {
+                                        player.armor = armor;
+                                    } else {
+                                        System.out.println("Gecersiz Islem !");
+                                    }
+                                } else {
+                                    System.out.println("Secilen Islem listede yok !");
+                                }
+
+                            }
+
+                            case 3 -> {
+
+                                System.out.println("Buyuler" +
+                                        "\n Senin Paran = " + player.cash +
+                                        "\n1 - Super Yumruk (500)   " + Fighter.Magics.SUPER_PUNCH.getOwned() +
+                                        "\n2 - Ates Topu (1000) " + Fighter.Magics.FIREBALL.getOwned() +
+                                        "\n3 - Karanligin Atesi (3000)  " + Fighter.Magics.DARK_OF_FIRE.getOwned() +
+                                        "\n0 - Geri");
+
+                                int indexMagic = scInt.nextInt();
+                                if (indexMagic < Fighter.Magics.values().length - 1 && indexMagic > 0){
+                                    Fighter.Magics magic = Fighter.Magics.values()[indexMagic];
+                                    if (player.magics.contains(magic) || player.magic != magic) {
+                                        player.magic = magic;
+                                    } else {
+                                        System.out.println("Gecersiz Islem !");
+                                    }
+                                } else {
+                                    System.out.println("Secilen Islem listede yok !");
+                                }
+
+                            }
 
 
 
@@ -384,19 +470,19 @@ public final class Fight {
 
         sleep(1000);
         System.out.println("0%");
-        sleep(4000);
-        System.out.println("25%");
-        sleep(4000);
-        System.out.println("50%");
-        sleep(4000);
-        System.out.println("75%");
-        sleep(4000);
-        System.out.println("100%");
         sleep(2000);
+        System.out.println("25%");
+        sleep(2000);
+        System.out.println("50%");
+        sleep(2000);
+        System.out.println("75%");
+        sleep(2000);
+        System.out.println("100%");
+        sleep(1000);
         System.out.println("Mac Basliyor...");
-        sleep(5000);
+        sleep(2500);
         System.out.println("Karakterler Yukleniyor...");
-        sleep(3000);
+        sleep(1500);
         System.out.println("MAC BASLADI");
 
         while (player.isAlive && enemy.isAlive){
@@ -439,6 +525,8 @@ public final class Fight {
             System.out.println("Kaybettin ! -" + (cash/4));
             player.cash -= (int)(cash / 4);
         }
+
+        player.health = 100;
 
         player.isAlive = true;
         enemy.isAlive = true;
@@ -518,22 +606,22 @@ public final class Fight {
             if (isRealPlayer) {
                 if (different == 0) {
                     System.out.println("Tam Isabet !");
-                    System.out.println("Verilen Hasar = " + (attack + weapon.damage));
+                    System.out.println("Verilen Hasar = " + enemy.takeDamage(attack + weapon.damage));
                     enemy.health -= enemy.takeDamage(attack + weapon.damage);
                 }
                 else if (different > 0 && different < 3) {
                     System.out.println("Iyi Isabet !");
-                    System.out.println("Verilen Hasar = " + (int) ((attack + weapon.damage) / 1.2));
+                    System.out.println("Verilen Hasar = " + enemy.takeDamage((int) ((attack + weapon.damage) / 1.2)));
                     enemy.health -= enemy.takeDamage((int) ((attack + weapon.damage) / 1.2));
                 }
                 else if (different >= 3 && different <= 5) {
                     System.out.println("Az Cok Vurdun Iste !");
-                    System.out.println("Verilen Hasar = " + (int) ((attack + weapon.damage) / 1.5));
+                    System.out.println("Verilen Hasar = " + enemy.takeDamage((int) ((attack + weapon.damage) / 1.5)));
                     enemy.health -= enemy.takeDamage((int) ((attack + weapon.damage) / 1.5));
                 }
                 else if (different > 5 && different < 9) {
                     System.out.println("Kotu Isabet !");
-                    System.out.println("Verilen Hasar = " + (int) ((attack + weapon.damage) / 2));
+                    System.out.println("Verilen Hasar = " + enemy.takeDamage((int) ((attack + weapon.damage) / 2)));
                     enemy.health -= enemy.takeDamage((int) ((attack + weapon.damage) / 2));
                 }
                 else {
@@ -606,6 +694,10 @@ public final class Fight {
                 this.durability = durability;
             }
 
+            public static boolean isInUse(Fighter.Weapons weapon){
+                return weapon == player.weapon;
+            }
+
             public int getDurability(){
                 return this.durability;
             }
@@ -647,6 +739,10 @@ public final class Fight {
                 this.durability = durability;
             }
 
+            public static boolean isInUse(Fighter.Armors armor){
+                return armor == player.armor;
+            }
+
             public int getDurability(){
                 return this.durability;
             }
@@ -684,6 +780,10 @@ public final class Fight {
                 this.cost = cost;
                 this.damage = damage;
                 this.isOwned = isOwned;
+            }
+
+            public static boolean isInUse(Fighter.Magics magic){
+                return magic == player.magic;
             }
 
             public boolean getOwned(){
